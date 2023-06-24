@@ -39,6 +39,6 @@ import { BookStoreModule } from './book-store/book-store.module';
     BookStoreModule,
   ],
   controllers: [AppController],
-  providers: [AppService, TypeOrmModule],
+  providers: [AppService],
 })
 export class AppModule {}
