@@ -31,6 +31,7 @@ import { BookStoreModule } from './book-store/book-store.module';
           type: 'postgres',
           url: configService.getOrThrow('DB_URI', ''),
           synchronize: false,
+          autoLoadEntities: true,
         };
       },
       inject: [ConfigService],
