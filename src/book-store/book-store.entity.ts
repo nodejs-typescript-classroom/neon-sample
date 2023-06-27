@@ -41,4 +41,10 @@ export class BookStoreEntity {
     length: '100',
   })
   publication: string;
+  @Column({
+    name: 'is_force_withdraw',
+    type: 'boolean',
+    default: false,
+  })
+  isForceWithdraw: boolean;
 }
