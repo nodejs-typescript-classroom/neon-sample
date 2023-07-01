@@ -7,8 +7,9 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
-import { BookStoreDto } from '../dtos/book-store.dto';
+import { BookStoreDto } from './dtos/book-store.dto';
 import { BookStoreService } from './book-store.service';
 
 @Controller('books')
@@ -23,6 +24,12 @@ export class BookController {
   async getBooks() {
     return this.bookStoreService.getBookList();
   }
+  @Get('/user')
+  async sayHi(@Query('user') user: string) {
+    this.logger.log({ user });
+    return this.bookStoreService.sayHi(user);
+  }
+
   @Get('/:id')
   async getBookById(@Param('id') id: string) {
     this.logger.log({ id });

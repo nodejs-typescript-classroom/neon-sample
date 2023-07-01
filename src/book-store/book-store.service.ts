@@ -1,8 +1,9 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
-import { BookStoreDto } from '../dtos/book-store.dto';
+import { BookStoreDto } from './dtos/book-store.dto';
 import { BookStoreEntity } from './book-store.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UserService } from './user/user.service';
 
 @Injectable()
 export class BookStoreService {
@@ -11,6 +12,7 @@ export class BookStoreService {
     private readonly dataSource: DataSource,
     @InjectRepository(BookStoreEntity)
     private readonly bookStoreRepo: Repository<BookStoreEntity>,
+    private readonly userService: UserService,
   ) {}
   async getBookList(): Promise<BookStoreDto[]> {
     try {
@@ -161,5 +163,8 @@ export class BookStoreService {
       this.logger.error({ message: 'deleteById error' }, error);
       throw error;
     }
+  }
+  sayHi(user: string): string {
+    return user + this.userService.greeting();
   }
 }
